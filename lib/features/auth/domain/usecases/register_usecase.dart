@@ -1,0 +1,26 @@
+// lib/features/auth/domain/usecases/register_usecase.dart
+
+import 'package:dartz/dartz.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/user_entity.dart';
+import '../repositories/auth_repository.dart';
+
+class RegisterUseCase {
+  final AuthRepository _repo;
+  RegisterUseCase(this._repo);
+
+  Future<Either<Failure, UserEntity>> call({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+    required String role,
+  }) =>
+      _repo.register(
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        role: role,
+      );
+}
